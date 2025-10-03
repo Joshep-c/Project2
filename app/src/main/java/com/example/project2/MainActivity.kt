@@ -5,25 +5,29 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.project2.ui.theme.Project2Theme
-
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Project2Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { _ ->
-                    HomeView()
+            // Estado del tema (claro/oscuro)
+            var darkTheme by remember { mutableStateOf(false) }
+
+            Project2Theme(darkTheme = darkTheme) {
+                Scaffold(
+                    modifier = Modifier.fillMaxSize()
+                ) { innerPadding ->
+                    HomeView(
+                        modifier = Modifier.padding(innerPadding),
+                        onToggleTheme = { darkTheme = !darkTheme }
+                    )
                 }
             }
         }
@@ -31,18 +35,26 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun HomeView(){
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ){
+fun HomeView(
+    modifier: Modifier = Modifier,
+    onToggleTheme: () -> Unit
+) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Center, // centrado vertical
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text(
             text = "ShopPly",
             style = MaterialTheme.typography.headlineMedium
         )
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { /* acción */ }) {
-            Text("Inicio")
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Button(onClick = { onToggleTheme() }) {
+            Text("Cambiar tema")
         }
     }
 }
