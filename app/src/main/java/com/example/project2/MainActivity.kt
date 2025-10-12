@@ -7,54 +7,30 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import com.example.project2.ui.theme.Project2Theme
+import androidx.navigation.compose.rememberNavController
+
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import com.example.project2.Pantallas.PantallaFormulario
+import com.example.project2.Pantallas.PantallaInicio
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            // Estado del tema (claro/oscuro)
-            var darkTheme by remember { mutableStateOf(false) }
-
-            Project2Theme(darkTheme = darkTheme) {
-                Scaffold(
-                    modifier = Modifier.fillMaxSize()
-                ) { innerPadding ->
-                    HomeView(
-                        modifier = Modifier.padding(innerPadding),
-                        onToggleTheme = { darkTheme = !darkTheme }
-                    )
-                }
-            }
+            ShopPlyApp()
         }
     }
 }
 
 @Composable
-fun HomeView(
-    modifier: Modifier = Modifier,
-    onToggleTheme: () -> Unit
-) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center, // centrado vertical
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "ShopPly",
-            style = MaterialTheme.typography.headlineMedium
-        )
+fun ShopPlyApp(){
+    val navController = rememberNavController()
+    NavHost(navController, startDestination = "inicio") {
+        composable("inicio"){ PantallaInicio(navController) }
+        composable("formulario") { PantallaFormulario(navController) }
 
-        Spacer(modifier = Modifier.height(24.dp))
-
-        Button(onClick = { onToggleTheme() }) {
-            Text("Cambiar tema")
-        }
     }
+
 }
