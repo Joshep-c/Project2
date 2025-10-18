@@ -62,6 +62,7 @@ fun AuthScreen(modifier: Modifier = Modifier, navController: NavHostController) 
         )
 
         Spacer (modifier = Modifier.height(20.dp))
+
         Button(onClick = {
             navController.navigate("login")
         },
@@ -73,6 +74,7 @@ fun AuthScreen(modifier: Modifier = Modifier, navController: NavHostController) 
         }
 
         Spacer (modifier = Modifier.height(20.dp))
+
         OutlinedButton(onClick = {
             navController.navigate("signup")
         },
