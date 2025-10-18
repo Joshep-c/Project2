@@ -8,6 +8,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.project2.Screen.AuthScreen
 import com.example.project2.Screen.LoginScreen
 import com.example.project2.Screen.SignUpScreen
+import com.example.project2.Screen.AnimationScreen
+
 
 @Composable
 fun AppNavigation(modifier: Modifier = Modifier) {
@@ -32,5 +34,10 @@ fun AppNavigation(modifier: Modifier = Modifier) {
                 }
             )
         }
+
+        composable("animation") {
+            AnimationScreen(modifier = modifier, navController = navController)
+        }
+
     }
 }
