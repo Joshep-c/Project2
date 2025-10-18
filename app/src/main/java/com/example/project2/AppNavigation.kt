@@ -23,7 +23,14 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         }
 
         composable("signup") {
-            SignUpScreen()
+            SignUpScreen(
+                modifier = modifier,
+                onCancel = {
+                    navController.navigate("auth") {
+                        popUpTo("signup") { inclusive = true }
+                    }
+                }
+            )
         }
     }
 }

@@ -11,7 +11,7 @@ class AuthViewModel : ViewModel() {
     private val firestore = FirebaseFirestore.getInstance() // Get instance of FirebaseFirestore
 
     fun login(){
-        // Your login logic here
+
     }
 
     fun signup(email: String, name: String, password: String, onResult: (Boolean, String?) -> Unit){

@@ -1,7 +1,9 @@
+// Kotlin
 package com.example.project2.Screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -29,20 +31,17 @@ import com.example.project2.AppUtil
 import com.example.project2.viewmodel.AuthViewModel
 
 @Composable
-fun SignUpScreen(modifier: Modifier = Modifier, authViewModel: AuthViewModel = viewModel()) {
+fun SignUpScreen(
+    modifier: Modifier = Modifier,
+    authViewModel: AuthViewModel = viewModel(),
+    onCancel: () -> Unit = {}
+) {
 
-    var email by remember {
-        mutableStateOf("")
-    }
-    var name by remember {
-        mutableStateOf("")
-    }
-    var password by remember {
-        mutableStateOf("")
-    }
+    var email by remember { mutableStateOf("") }
+    var name by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
 
-    var context = LocalContext.current
-
+    val context = LocalContext.current
 
     Column (
         modifier = modifier
@@ -75,12 +74,8 @@ fun SignUpScreen(modifier: Modifier = Modifier, authViewModel: AuthViewModel = v
 
         OutlinedTextField(
             value = email,
-            onValueChange = {
-                email = it
-            },
-            label = {
-                Text(text = "Email address")
-            },
+            onValueChange = { email = it },
+            label = { Text(text = "Email address") },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -88,12 +83,8 @@ fun SignUpScreen(modifier: Modifier = Modifier, authViewModel: AuthViewModel = v
 
         OutlinedTextField(
             value = name,
-            onValueChange = {
-                name = it
-            },
-            label = {
-                Text(text = "Full name")
-            },
+            onValueChange = { name = it },
+            label = { Text(text = "Full name") },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -101,32 +92,43 @@ fun SignUpScreen(modifier: Modifier = Modifier, authViewModel: AuthViewModel = v
 
         OutlinedTextField(
             value = password,
-            onValueChange = {
-                password = it
-            },
-            label = {
-                Text(text = "Password")
-            },
+            onValueChange = { password = it },
+            label = { Text(text = "Password") },
             modifier = Modifier.fillMaxWidth(),
             visualTransformation = PasswordVisualTransformation()
         )
 
         Spacer (modifier = Modifier.height(20.dp))
 
-        Button(onClick = {
-            authViewModel.signup(email, name, password) { success, errorMessage ->
-                if(success){
-                    // Signup successful, handle accordingly
-                } else {
-                    AppUtil.showToast(context, errorMessage ?: "Something went wrong")
-                }
-            }
-        },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Text(text = "Sign Up", fontSize = 22.sp)
+            Button(
+                onClick = { onCancel() },
+                modifier = Modifier
+                    .weight(1f)
+                    .height(60.dp)
+            ) {
+                Text(text = "Cancel", fontSize = 22.sp)
+            }
+
+            Button(
+                onClick = {
+                    authViewModel.signup(email, name, password) { success, errorMessage ->
+                        if(success){
+                            // Signup successful
+                        } else {
+                            AppUtil.showToast(context, errorMessage ?: "Something went wrong")
+                        }
+                    }
+                },
+                modifier = Modifier
+                    .weight(1f)
+                    .height(60.dp)
+            ) {
+                Text(text = "Sign Up", fontSize = 22.sp)
+            }
         }
     }
 }
