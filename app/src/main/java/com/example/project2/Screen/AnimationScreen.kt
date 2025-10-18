@@ -53,7 +53,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 
 /**
- * Pantalla principal de animaciones con círculo interactivo
+ * Pantalla principal
  */
 @Composable
 fun AnimationScreen(modifier: Modifier = Modifier, navController: NavHostController? = null) {
@@ -124,7 +124,7 @@ fun AnimationScreen(modifier: Modifier = Modifier, navController: NavHostControl
 }
 
 /**
- * Motion design tokens centralizados siguiendo Material Design 3
+ * Motion design tokens centralizados con Material Design 3
  */
 private object MotionTokens {
     const val DURATION_SHORT = 200
@@ -177,7 +177,7 @@ private enum class CircleVisualState {
 }
 
 /**
- * Círculo animado con transiciones suaves
+ * Círculo animado
  */
 @Composable
 private fun AnimatedCircle(
@@ -308,35 +308,5 @@ private fun SequenceControl(
             text = if (isRunning) "Detener secuencia" else "Iniciar secuencia",
             style = MaterialTheme.typography.labelLarge
         )
-    }
-}
-
-/**
- * Previews para Android Studio
- */
-@Preview(
-    name = "Light Mode",
-    showBackground = true,
-    widthDp = 360,
-    heightDp = 720
-)
-@Composable
-private fun AnimationScreenPreviewLight() {
-    MaterialTheme {
-        AnimationScreen()
-    }
-}
-
-@Preview(
-    name = "Dark Mode",
-    showBackground = true,
-    widthDp = 360,
-    heightDp = 720,
-    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES
-)
-@Composable
-private fun AnimationScreenPreviewDark() {
-    MaterialTheme {
-        AnimationScreen()
     }
 }
