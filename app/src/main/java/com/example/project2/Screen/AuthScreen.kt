@@ -86,14 +86,5 @@ fun AuthScreen(modifier: Modifier = Modifier, navController: NavHostController) 
         }
 
         Spacer (modifier = Modifier.height(20.dp))
-
-        Button(
-            onClick = { navController.navigate("animation") },
-            modifier = Modifier
-                .padding(top = 8.dp)
-                .fillMaxWidth()
-        ) {
-            Text(text = "Animación")
-        }
     }
 }

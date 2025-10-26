@@ -29,10 +29,12 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.project2.AppUtil
 import com.example.project2.viewmodel.AuthViewModel
+import androidx.navigation.NavController
 
 @Composable
 fun SignUpScreen(
     modifier: Modifier = Modifier,
+    navController: NavController,
     authViewModel: AuthViewModel = viewModel(),
     onCancel: () -> Unit = {}
 ) {
@@ -40,6 +42,8 @@ fun SignUpScreen(
     var email by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+
+    var isloading by remember { mutableStateOf(false) }
 
     val context = LocalContext.current
 
@@ -105,7 +109,11 @@ fun SignUpScreen(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Button(
-                onClick = { onCancel() },
+                onClick = {
+                    navController.navigate("auth"){
+                        popUpTo("auth") { inclusive = true }
+                    }
+                },
                 modifier = Modifier
                     .weight(1f)
                     .height(60.dp)
@@ -115,19 +123,25 @@ fun SignUpScreen(
 
             Button(
                 onClick = {
+                    isloading = true
                     authViewModel.signup(email, name, password) { success, errorMessage ->
                         if(success){
-                            // Signup successful
+                            isloading = false
+                            navController.navigate("home") {
+                                popUpTo("auth") { inclusive = true }
+                            }
                         } else {
+                            isloading = false
                             AppUtil.showToast(context, errorMessage ?: "Something went wrong")
                         }
                     }
                 },
-                modifier = Modifier
+                    enabled = !isloading,
+                    modifier = Modifier
                     .weight(1f)
                     .height(60.dp)
             ) {
-                Text(text = "Sign Up", fontSize = 22.sp)
+                Text(text = if(isloading)"Creting account" else "Sign Up", fontSize = 22.sp)
             }
         }
     }

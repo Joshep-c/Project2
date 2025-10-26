@@ -52,15 +52,11 @@ import androidx.navigation.NavHostController
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 
-/**
- * Pantalla principal
- */
 @Composable
 fun AnimationScreen(modifier: Modifier = Modifier, navController: NavHostController? = null) {
     var currentState by remember { mutableStateOf(CircleVisualState.SMALL_BLUE) }
     var isAutoSequenceRunning by remember { mutableStateOf(false) }
 
-    // Control de secuencia automática
     LaunchedEffect(isAutoSequenceRunning) {
         if (isAutoSequenceRunning) {
             val states = CircleVisualState.entries
@@ -109,9 +105,7 @@ fun AnimationScreen(modifier: Modifier = Modifier, navController: NavHostControl
 
             Button(
                 onClick = {
-                    navController?.navigate("auth") {
-                        popUpTo("animation") { inclusive = true }
-                    }
+                    navController?.navigate("home")
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -123,9 +117,6 @@ fun AnimationScreen(modifier: Modifier = Modifier, navController: NavHostControl
     }
 }
 
-/**
- * Motion design tokens centralizados con Material Design 3
- */
 private object MotionTokens {
     const val DURATION_SHORT = 200
     const val DURATION_MEDIUM = 400
@@ -146,9 +137,6 @@ private object MotionTokens {
     )
 }
 
-/**
- * Estados visuales del círculo
- */
 private enum class CircleVisualState {
     SMALL_BLUE,
     MEDIUM_GREEN,
@@ -175,10 +163,6 @@ private enum class CircleVisualState {
             BIG_YELLOW -> "Grande"
         }
 }
-
-/**
- * Círculo animado
- */
 @Composable
 private fun AnimatedCircle(
     visualState: CircleVisualState,
@@ -228,7 +212,6 @@ private fun AnimatedCircle(
         )
     }
 
-    // Contenedor con el círculo
     Box(
         modifier = modifier,
         contentAlignment = Alignment.Center
@@ -249,9 +232,6 @@ private fun AnimatedCircle(
     }
 }
 
-/**
- * Controles para cambiar el estado manualmente
- */
 @Composable
 private fun StateControls(
     currentState: CircleVisualState,
@@ -284,10 +264,6 @@ private fun StateControls(
         }
     }
 }
-
-/**
- * Control de secuencia automática
- */
 @Composable
 private fun SequenceControl(
     isRunning: Boolean,

@@ -9,35 +9,40 @@ import com.example.project2.Screen.AuthScreen
 import com.example.project2.Screen.LoginScreen
 import com.example.project2.Screen.SignUpScreen
 import com.example.project2.Screen.AnimationScreen
-
+import com.example.project2.Screen.DynamicListScreen
+import com.example.project2.Screen.HomeScreen
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
 fun AppNavigation(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "auth") {
+    val isLoggedIn = FirebaseAuth.getInstance().currentUser != null
+    val firstPage = if (isLoggedIn) "home" else "auth"
+
+    NavHost(navController = navController, startDestination = firstPage) {
         composable("auth") {
             AuthScreen(modifier, navController)
         }
 
         composable("login") {
-            LoginScreen()
+            LoginScreen(modifier, navController)
         }
 
         composable("signup") {
-            SignUpScreen(
-                modifier = modifier,
-                onCancel = {
-                    navController.navigate("auth") {
-                        popUpTo("signup") { inclusive = true }
-                    }
-                }
-            )
+            SignUpScreen(modifier, navController)
         }
 
         composable("animation") {
-            AnimationScreen(modifier = modifier, navController = navController)
+            AnimationScreen(modifier, navController)
         }
 
+        composable("home") {
+            HomeScreen(modifier, navController)
+        }
+
+        composable("dynamicList") {
+            DynamicListScreen(modifier, navController)
+        }
     }
 }

@@ -54,7 +54,7 @@ dependencies {
     implementation(libs.androidx.foundation)
 
     // Firebase BoM para alinear versiones; usar KTX compatibles con AuthViewModel
-    implementation(platform("com.google.firebase:firebase-bom:32.1.0"))
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
 
