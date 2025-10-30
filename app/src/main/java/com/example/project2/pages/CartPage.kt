@@ -8,4 +8,3 @@ import androidx.compose.ui.Modifier
 fun CartPage(modifier: Modifier = Modifier) {
     Text(text = "Home Page", modifier = modifier)
 }
-
