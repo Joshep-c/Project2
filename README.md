@@ -9,7 +9,7 @@
 
 ---
 
-## Resumen Ejecutivo
+## Resumen
 
 ShopPly
  es una aplicación móvil desarrollada en **Kotlin** para Android cuyo objetivo es permitir que pequeños y medianos comercios puedan digitalizar su catálogo de productos de manera rápida, económica y sin necesidad de plataformas complejas.
