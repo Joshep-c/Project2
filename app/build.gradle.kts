@@ -59,6 +59,9 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx")
 
     implementation("androidx.compose.material:material-icons-extended:1.6.0")
+    implementation("com.tbuonomo:dotsindicator:5.1.0")
+
+    implementation("io.coil-kt:coil-compose:2.5.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

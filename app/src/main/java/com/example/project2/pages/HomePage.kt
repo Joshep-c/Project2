@@ -1,13 +1,20 @@
 package com.example.project2.pages
 
+import android.widget.Space
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.project2.components.BannerView
+import com.example.project2.components.CategoriesView
 import com.example.project2.components.HeadView
 
 @Composable
@@ -17,7 +24,15 @@ fun HomePage(modifier: Modifier = Modifier) {
             .padding(16.dp)
     ){
         HeadView(modifier)
+        Spacer(modifier = Modifier.height(10.dp))
         BannerView(modifier)
+        Text("Categories",
+            style = TextStyle(
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold
+            )
+        )
+        CategoriesView(modifier)
     }
 }
 

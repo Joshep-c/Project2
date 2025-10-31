@@ -29,10 +29,11 @@ fun HeadView(modifier: Modifier = Modifier) {
     LaunchedEffect(Unit) {
         Firebase.firestore.collection("users")
             .document(Firebase.auth.currentUser?.uid!!)
-            .get().addOnCompleteListener () {
-                name = it.result.get("name").toString().split("").get(0)
+            .get().addOnCompleteListener { task ->
+                if (task.isSuccessful && task.result.exists()) {
+                    name = task.result.getString("name") ?: ""
+                }
             }
-
     }
 
     Row (
