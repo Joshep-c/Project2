@@ -21,6 +21,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.project2.GlobalNavigation
@@ -60,7 +61,7 @@ fun CategoriesView(modifier: Modifier = Modifier) {
 @Composable
 fun CategoryItem(category : CategoryModel) {
     Card(
-        modifier = Modifier.width(140.dp)
+        modifier = Modifier.size(140.dp)
             .clickable{
                 GlobalNavigation.navController.navigate("category-products/"+category.id)
             },
@@ -76,12 +77,12 @@ fun CategoryItem(category : CategoryModel) {
             modifier = Modifier.fillMaxSize()
         ) {
             AsyncImage(
-                model = category.image,
-                contentDescription = "Category Image",
+                model = category.imageUrl,
+                contentDescription = category.name,
                 modifier = Modifier.size(80.dp)
             )
-            Spacer(modifier = Modifier.height(12.dp))
-            Text(text = category.name)
+            Spacer(modifier = Modifier.height(5.dp))
+            Text(text = category.name, textAlign = TextAlign.Center)
 
         }
     }

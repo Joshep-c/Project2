@@ -1,6 +1,7 @@
 package com.example.project2.pages
 
 import android.widget.Space
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,14 +25,14 @@ fun HomePage(modifier: Modifier = Modifier) {
             .padding(16.dp)
     ){
         HeadView(modifier)
-        Spacer(modifier = Modifier.height(10.dp))
-        BannerView(modifier)
+        BannerView(modifier = Modifier.height(160.dp))
         Text("Categories",
             style = TextStyle(
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
             )
         )
+        Spacer(modifier = Modifier.height(8.dp))
         CategoriesView(modifier)
     }
 }

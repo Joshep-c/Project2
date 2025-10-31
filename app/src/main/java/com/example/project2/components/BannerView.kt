@@ -56,12 +56,10 @@ fun BannerView(modifier: Modifier = Modifier) {
                 contentDescription = "Banner Image",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(180.dp)
+                    .height(150.dp)
                     .clip(RoundedCornerShape(12.dp)),
             )
         }
-
-        Spacer(modifier = Modifier.height(16.dp))
 
         DotsIndicator(
             dotCount = bannerList.size,
