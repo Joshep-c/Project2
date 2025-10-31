@@ -1,16 +1,18 @@
 
 ---
 
-#  Project2 – Catálogo de Productos para Tiendas
+#  ShopPly
+ – Catálogo de Productos para Tiendas
 
 🔗 **Repositorio público:**
-[https://github.com/Joshep-c/Project2.git](https://github.com/Joshep-c/Project2.git)
+[https://github.com/Joshep-c/ShopPly.git](https://github.com/Joshep-c/ShopPly.git)
 
 ---
 
 ## Resumen Ejecutivo
 
-Project2 es una aplicación móvil desarrollada en **Kotlin** para Android cuyo objetivo es permitir que pequeños y medianos comercios puedan digitalizar su catálogo de productos de manera rápida, económica y sin necesidad de plataformas complejas.
+ShopPly
+ es una aplicación móvil desarrollada en **Kotlin** para Android cuyo objetivo es permitir que pequeños y medianos comercios puedan digitalizar su catálogo de productos de manera rápida, económica y sin necesidad de plataformas complejas.
 
 La aplicación permite que un usuario pueda:
 
@@ -64,7 +66,7 @@ La aplicación propuesta consiste en una plataforma móvil orientada a la gesti�
 **Problema identificado:**
 Los pequeños comercios no cuentan con una herramienta simple para mostrar sus productos sin recurrir a plataformas complejas como Amazon o Shein.
 
-**Valor agregado de Project2:**
+**Valor agregado de ShopPly:**
 
 | Aspecto         | Valor diferencial                                |
 | --------------- | ------------------------------------------------ |
@@ -105,9 +107,9 @@ Los pequeños comercios no cuentan con una herramienta simple para mostrar sus p
 1. Clonar el repositorio:
 
    ```bash
-   git clone https://github.com/Joshep-c/Project2.git
+   git clone https://github.com/Joshep-c/ShopPly.git
    ```
-2. Abrir Android Studio → **Open an existing project** → seleccionar `Project2`.
+2. Abrir Android Studio → **Open an existing project** → seleccionar `ShopPly`.
 3. Esperar la sincronización automática de Gradle.
 4. Conectar un dispositivo físico o elegir un emulador.
 5. Presionar **Run (Shift + F10)** para ejecutar la app.
